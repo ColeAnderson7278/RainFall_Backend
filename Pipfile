@@ -7,6 +7,7 @@ name = "pypi"
 hug = "*"
 records = "*"
 "psycopg2-binary" = "*"
+gunicorn = "*"
 
 [dev-packages]
 
