@@ -1,7 +1,7 @@
 import hug
 import records
 
-db = records.Database('postgres:///rainfall')
+db = records.Database()
 
 app = hug.http(response_headers={
     'Access-Control-Allow-Origin': '*',
