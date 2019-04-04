@@ -8,7 +8,7 @@ DO $$
 BEGIN
 IF NOT EXISTS (SELECT * FROM scores) THEN
     INSERT INTO scores (name, number) VALUES
-    ('Me', 42000);
+    ('Henry', 42000);
 END IF;
 END$$;
 
