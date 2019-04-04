@@ -4,12 +4,12 @@ CREATE TABLE IF NOT EXISTS scores (
     number INTEGER NOT NULL
 );
 
-DO $$
-BEGIN
-IF NOT EXISTS (SELECT * FROM scores) THEN
-    INSERT INTO scores (name, number) VALUES
-    ('Henry', 42000);
-END IF;
-END$$;
+-- DO $$
+-- BEGIN
+-- IF NOT EXISTS (SELECT * FROM scores) THEN
+--     INSERT INTO scores (name, number) VALUES
+--     ('Henry', 42000);
+-- END IF;
+-- END$$;
 
 
