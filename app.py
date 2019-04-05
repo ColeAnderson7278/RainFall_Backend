@@ -29,12 +29,11 @@ class Database:
 def high_scores():
     formatted_scores = []
     high_scores_from_db = Database.high_scores()
-    for high_score in high_scores_from_db{
+    for high_score in high_scores_from_db:
         formatted_scores.append({
             'name': high_score_from_db.name,
             'number': high_score_from_db.number,
         })
-    }
     return formatted_scores
 
 @app.post('/new-score')
