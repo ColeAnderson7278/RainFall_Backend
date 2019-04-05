@@ -23,6 +23,10 @@ class Database:
             name=name,
             number=number)
 
+    @staticmethod
+    def clear():
+        db.execute('DELETE FROM scores;')
+
 
 @app.get('/high-scores')
 def high_scores():
@@ -37,4 +41,5 @@ def high_scores():
 
 @app.post('/new-score')
 def new_score(name: str, number: int):
+    name =name if isinstance(name, str) else name.decode('utf-8')
     Database.new_score(name=name, number=number)
