@@ -12,10 +12,10 @@ app = hug.http(
 
 class Database:
     @staticmethod
-    def high_score():
+    def high_scores():
         return db.query(
-            'SELECT name, number FROM scores ORDER BY number DESC LIMIT 1'
-        ).first()
+            'SELECT name, number FROM scores ORDER BY number DESC LIMIT 5'
+        )
 
     @staticmethod
     def new_score(name, number):
@@ -25,14 +25,17 @@ class Database:
             number=number)
 
 
-@app.get('/high-score')
-def high_score():
-    high_score_from_db = Database.high_score()
-    return {
-        'name': high_score_from_db.name,
-        'number': high_score_from_db.number,
+@app.get('/high-scores')
+def high_scores():
+    formatted_scores = []
+    high_scores_from_db = Database.high_scores()
+    for high_score in high_scores_from_db{
+        formatted_scores.append({
+            'name': high_score_from_db.name,
+            'number': high_score_from_db.number,
+        })
     }
-
+    return formatted_scores
 
 @app.post('/new-score')
 def new_score(name: str, number: int):
