@@ -14,7 +14,8 @@ class Database:
     @staticmethod
     def high_score():
         return db.query(
-            'SELECT name, number FROM scores ORDER BY number DESC LIMIT 5')
+            'SELECT name, number FROM scores ORDER BY number DESC LIMIT 5'
+        ).first()
 
     @staticmethod
     def new_score(name, number):
