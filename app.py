@@ -28,8 +28,7 @@ class Database:
 @app.get('/high-scores')
 def high_scores():
     formatted_scores = []
-    high_scores_from_db = Database.high_scores()
-    for high_score in high_scores_from_db:
+    for high_score in Database.high_scores():
         formatted_scores.append({
             'name': high_score_from_db.name,
             'number': high_score_from_db.number,
