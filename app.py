@@ -32,8 +32,10 @@ class Database:
 def high_scores():
     formatted_scores = []
     for high_score in Database.high_scores():
+        name = high_score.name if isinstance(
+            high_score.name, str) else high_score.name.decode('utf-8')
         formatted_scores.append({
-            'name': high_score.name,
+            'name': name,
             'number': high_score.number,
         })
     return formatted_scores
@@ -41,5 +43,5 @@ def high_scores():
 
 @app.post('/new-score')
 def new_score(name: str, number: int):
-    name =name if isinstance(name, str) else name.decode('utf-8')
+    name = name if isinstance(name, str) else name.decode('utf-8')
     Database.new_score(name=name, number=number)
