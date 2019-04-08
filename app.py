@@ -3,11 +3,9 @@ import records
 
 db = records.Database()
 
-app = hug.http(
-    response_headers={
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, GET, POST',
-    })
+app = hug.API(__name__)
+
+app.http.add_middleware(hug.middleware.CORSMiddleware(app, max_age=10))
 
 
 class Database:
@@ -28,20 +26,17 @@ class Database:
         db.execute('DELETE FROM scores;')
 
 
-@app.get('/high-scores')
+@hug.get('/high-scores')
 def high_scores():
     formatted_scores = []
     for high_score in Database.high_scores():
-        name = high_score.name if isinstance(
-            high_score.name, str) else high_score.name.decode('utf-8')
         formatted_scores.append({
-            'name': name,
+            'name': high_score.name,
             'number': high_score.number,
         })
     return formatted_scores
 
 
-@app.post('/new-score')
+@hug.post('/new-score')
 def new_score(name: str, number: int):
-    name = name if isinstance(name, str) else name.decode('utf-8')
     Database.new_score(name=name, number=number)
